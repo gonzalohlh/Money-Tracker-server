@@ -13,16 +13,10 @@ dbConnect();
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  try {
-    const usersApi = await User.find({});
-    res.json({
-      status: "success",
-      data: usersApi,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+app.get("/", (req, res) => {
+  res.json({
+    msg: "Welcome to Money Tracker API",
+  });
 });
 
 app.use("/api/users", userRoute);
