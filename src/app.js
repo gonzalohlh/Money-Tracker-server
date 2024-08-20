@@ -7,9 +7,15 @@ const User = require("./model/User");
 
 const app = express();
 
+dotenv.config();
+
+dbConnect();
+
+app.use(express.json());
+
 app.get("/", async (req, res) => {
   try {
-    const usersApi = await User.find();
+    const usersApi = await User.find({});
     res.json({
       status: "success",
       data: usersApi,
@@ -18,12 +24,6 @@ app.get("/", async (req, res) => {
     console.log(error);
   }
 });
-
-dotenv.config();
-
-dbConnect();
-
-app.use(express.json());
 
 app.use("/api/users", userRoute);
 
