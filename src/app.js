@@ -9,7 +9,7 @@ const app = express();
 
 app.get("/", async (req, res) => {
   try {
-    const usersApi = User.find();
+    const usersApi = await User.find();
     res.json({
       status: "success",
       data: usersApi,
